@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
@@ -49,5 +50,9 @@ public class WarehouseService {
             throw new WarehouseException("Error al almacenar el archive " + filename, exception);
         }
         return filename;
+    }
+
+    public Path fileUpload(String filename) {
+        return Paths.get(storageLocation).resolve(filename);
     }
 }
