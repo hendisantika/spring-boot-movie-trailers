@@ -1,9 +1,16 @@
 package com.hendisantika.controller;
 
+import com.hendisantika.model.Movie;
 import com.hendisantika.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,4 +27,11 @@ public class HomeController {
     @Autowired
     private MovieRepository movieRepository;
 
+    @GetMapping
+    public ModelAndView seeHomepage() {
+        List<Movie> latestMovies =
+                movieRepository.findAll(PageRequest.of(0, 4, Sort.by("premiereDate").descending())).toList();
+        return new ModelAndView("index")
+                .addObject("latest Movies", latestMovies);
+    }
 }
