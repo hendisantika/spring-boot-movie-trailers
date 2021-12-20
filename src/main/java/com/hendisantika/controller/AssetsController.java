@@ -24,7 +24,7 @@ public class AssetsController {
     private WarehouseService warehouseService;
 
     @GetMapping("/{filename:.+}")
-    public Resource obtenerRecurso(@PathVariable("filename") String filename) {
+    public Resource getResource(@PathVariable("filename") String filename) {
         return warehouseService.uploadAsResource(filename);
     }
 }

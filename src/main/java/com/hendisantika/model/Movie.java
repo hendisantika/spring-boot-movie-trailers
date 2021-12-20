@@ -47,7 +47,7 @@ public class Movie {
     private String routeCover;
 
     @NotEmpty
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "genre_movie", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns =
     @JoinColumn(name = "id_genre"))
     private List<Genre> genres;

@@ -11,7 +11,7 @@
 <div layout:fragment="content">
     <h2>Movies</h2>
     <div class="text-end">
-        <a class="btn btn-primary mb-3" href="/admin/peliculas/nuevo">
+        <a class="btn btn-primary mb-3" href="/admin/movies/new">
             Add movie </a>
     </div>
     <table class="table table-hover">
@@ -19,7 +19,7 @@
         <tr>
             <th></th>
             <th>Movie</th>
-            <th>F. Premiere</th>
+            <th>Premiere Date</th>
             <th></th>
         </tr>
         </thead>
@@ -35,7 +35,7 @@
                 <p th:text="*{sinopsis}"></p>
                 <div>
 							<span class="badge rounded-pill bg-light text-dark me-1"
-                                  th:each="genero : *{genres}" th:text="${genre.title}">
+                                  th:each="genre : *{genres}" th:text="${genre.title}">
 							</span>
                 </div>
             </td>
@@ -66,11 +66,11 @@
 
 <div layout:fragment="scripts">
     <script>
-        function eliminarPelicula(id) {
-            if (!confirm('¿Estás seguro de eliminar esta película?')) {
+        function deleteMovie(id) {
+            if (!confirm('Are you sure to delete this movie?')) {
                 return;
             }
-            $('#eliminarPeliculaForm' + id).submit();
+            $('#deleteMovieForm' + id).submit();
         }
     </script>
 </div>

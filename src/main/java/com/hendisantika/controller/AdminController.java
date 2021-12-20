@@ -43,7 +43,7 @@ public class AdminController {
     private WarehouseService warehouseService;
 
     @GetMapping
-    public ModelAndView seeHomepage(@PageableDefault(sort = "titulo", size = 5) Pageable pageable) {
+    public ModelAndView seeHomepage(@PageableDefault(sort = "title", size = 5) Pageable pageable) {
         Page<Movie> movies = movieRepository.findAll(pageable);
         return new ModelAndView("admin/index").addObject("movies", movies);
     }
