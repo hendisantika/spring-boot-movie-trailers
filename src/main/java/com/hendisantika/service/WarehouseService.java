@@ -3,11 +3,14 @@ package com.hendisantika.service;
 import com.hendisantika.exception.WarehouseException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 /**
  * Created by IntelliJ IDEA.
@@ -32,5 +35,19 @@ public class WarehouseService {
         } catch (IOException exception) {
             throw new WarehouseException("Failed to initialize the location in the file store");
         }
+    }
+
+    public String storeFile(MultipartFile archive) {
+        String filename = archive.getOriginalFilename();
+        if (archive.isEmpty()) {
+            throw new WarehouseException("Can't store an empty file");
+        }
+        try {
+            InputStream inputStream = archive.getInputStream();
+            Files.copy(inputStream, Paths.get(storageLocation).resolve(filename), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException exception) {
+            throw new WarehouseException("Error al almacenar el archive " + filename, exception);
+        }
+        return filename;
     }
 }
