@@ -2,10 +2,12 @@ package com.hendisantika.service;
 
 import com.hendisantika.exception.FileNotFoundException;
 import com.hendisantika.exception.WarehouseException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
@@ -26,6 +28,7 @@ import java.nio.file.StandardCopyOption;
  * Date: 20/12/21
  * Time: 07.54
  */
+@Slf4j
 @Service
 public class WarehouseService {
     @Value("${storage.location}")
@@ -62,17 +65,26 @@ public class WarehouseService {
 
     public Resource uploadAsResource(String filename) {
         try {
-            Path archivo = fileUpload(filename);
-            Resource recurso = new UrlResource(archivo.toUri());
+            Path archive = fileUpload(filename);
+            Resource resource = new UrlResource(archive.toUri());
 
-            if (recurso.exists() || recurso.isReadable()) {
-                return recurso;
+            if (resource.exists() || resource.isReadable()) {
+                return resource;
             } else {
                 throw new FileNotFoundException("The file could not be found " + filename);
             }
 
         } catch (MalformedURLException exception) {
             throw new FileNotFoundException("The file could not be found " + filename, exception);
+        }
+    }
+
+    public void deleteArchive(String filename) {
+        Path archive = fileUpload(filename);
+        try {
+            FileSystemUtils.deleteRecursively(archive);
+        } catch (Exception exception) {
+            log.info("Error: ", exception);
         }
     }
 }
