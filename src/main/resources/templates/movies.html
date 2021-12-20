@@ -4,36 +4,37 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <title>[[${movie.title}]]</title>
+    <title th:inline="text">Movies</title>
 </head>
 <body>
 
-<div layout:fragment="content" th:object="${movie}">
+<div layout:fragment="content">
+    <h4>All the movies</h4>
+
     <div class="row">
-        <div class="col-md-6">
-            <img class="img-fluid rounded w-100"
-                 th:alt="*{title}" th:src="@{/assets/{filename}(filename=*{routeCover})}">
-        </div>
-        <div class="col-md-6">
-            <div class="text-end my-3">
-                <a
-                        class="btn btn-danger"
-                        data-fancybox=""
-                        th:href="@{https://www.youtube.com/watch?v={youtubeId}(youtubeId=*{youtubeTrailerId})}">
-                    <svg
-                            class="bi bi-film" fill="currentColor" height="16"
-                            viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                                d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm4 0v6h8V1H4zm8 8H4v6h8V9zM1 1v2h2V1H1zm2 3H1v2h2V4zM1 7v2h2V7H1zm2 3H1v2h2v-2zm-2 3v2h2v-2H1zM15 1h-2v2h2V1zm-2 3v2h2V4h-2zm2 3h-2v2h2V7zm-2 3v2h2v-2h-2zm2 3h-2v2h2v-2z"/>
-                    </svg>
-                    Ver trailer
+        <div class="row">
+            <div class="col-md-3 my-5" th:each="movie : ${movies}"
+                 th:object="${movie}">
+                <a class="card shadow-lg" style="text-decoration: none;"
+                   th:href="@{/movies/{id}(id=*{id})}"> <img
+                        class="card-img-top"
+                        th:alt="*{title}" th:src="@{/assets/{filename}(filename=*{routeCover})}">
+                    <div class="card-body">
+                        <h2 class="card-title fs-6" th:text="*{title}"></h2>
+                        <p class="text-muted small"
+                           th:text="*{#temporals.format(premiereDate,'dd/MM/yyyy')}"></p>
+                    </div>
                 </a>
             </div>
-            <h2 th:text="*{title}"></h2>
-            <div class="mb-3">
-					<span class="badge rounded-pull bg-light text-dark me-1"
-                          th:each="genre : *{genres}" th:text="${genre.title}"></span>
-                <p th:text="*{sinopsis}"></p>
+        </div>
+        <div class="row mt-5" th:with="page=${movies}">
+            <div class="col-sm-6">
+                <div sd:pagination-sumary></div>
+                <div class="col-sm-6">
+                    <nav>
+                        <ul class="pagination" sd:pagination="full"></ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
