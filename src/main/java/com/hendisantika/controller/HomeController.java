@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -38,10 +39,16 @@ public class HomeController {
                 .addObject("latest Movies", latestMovies);
     }
 
-    @GetMapping("/movies")
+    @GetMapping("movies")
     public ModelAndView listMovies(@PageableDefault(sort = "premiereDate", direction = Sort.Direction.DESC) Pageable pageable) {
         Page<Movie> movies = movieRepository.findAll(pageable);
         return new ModelAndView("movies")
                 .addObject("movies", movies);
+    }
+
+    @GetMapping("movies/{id}")
+    public ModelAndView showMovieDetails(@PathVariable Integer id) {
+        Movie movie = movieRepository.findById(id).get();
+        return new ModelAndView("movie").addObject("movie", movie);
     }
 }
