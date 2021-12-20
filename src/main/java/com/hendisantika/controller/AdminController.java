@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -73,5 +74,15 @@ public class AdminController {
 
         movieRepository.save(movie);
         return new ModelAndView("redirect:/admin");
+    }
+
+    @GetMapping("/movies/{id}/edit")
+    public ModelAndView showMovieEditForm(@PathVariable Integer id) {
+        Movie movie = movieRepository.findById(id).get();
+        List<Genre> genres = genreRepository.findAll(Sort.by("title"));
+
+        return new ModelAndView("admin/edit-movie")
+                .addObject("movie", movie)
+                .addObject("genres", genres);
     }
 }
