@@ -1,13 +1,17 @@
 package com.hendisantika.service;
 
+import com.hendisantika.exception.FileNotFoundException;
 import com.hendisantika.exception.WarehouseException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -54,5 +58,21 @@ public class WarehouseService {
 
     public Path fileUpload(String filename) {
         return Paths.get(storageLocation).resolve(filename);
+    }
+
+    public Resource uploadAsResource(String filename) {
+        try {
+            Path archivo = fileUpload(filename);
+            Resource recurso = new UrlResource(archivo.toUri());
+
+            if (recurso.exists() || recurso.isReadable()) {
+                return recurso;
+            } else {
+                throw new FileNotFoundException("The file could not be found " + filename);
+            }
+
+        } catch (MalformedURLException exception) {
+            throw new FileNotFoundException("The file could not be found " + filename, exception);
+        }
     }
 }
