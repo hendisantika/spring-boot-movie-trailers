@@ -11,7 +11,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -50,5 +53,25 @@ public class AdminController {
         return new ModelAndView("admin/new-movie")
                 .addObject("movie", new Movie())
                 .addObject("genres", genres);
+    }
+
+    @PostMapping("/movies")
+    public ModelAndView registerMovie(@Validated Movie movie, BindingResult bindingResult) {
+        if (bindingResult.hasErrors() || movie.getFrontPage().isEmpty()) {
+            if (movie.getFrontPage().isEmpty()) {
+                bindingResult.rejectValue("frontPage", "MultipartNotEmpty");
+            }
+
+            List<Genre> genres = genreRepository.findAll(Sort.by("title"));
+            return new ModelAndView("admin/new-movie")
+                    .addObject("movie", movie)
+                    .addObject("genres", genres);
+        }
+
+        String routeCover = warehouseService.storeFile(movie.getFrontPage());
+        movie.setRouteCover(routeCover);
+
+        movieRepository.save(movie);
+        return new ModelAndView("redirect:/admin");
     }
 }
