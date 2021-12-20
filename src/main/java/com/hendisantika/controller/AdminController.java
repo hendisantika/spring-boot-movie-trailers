@@ -111,4 +111,13 @@ public class AdminController {
         movieRepository.save(movieDB);
         return new ModelAndView("redirect:/admin");
     }
+
+    @PostMapping("/movies/{id}/delete")
+    public String deleteMovie(@PathVariable Integer id) {
+        Movie movie = movieRepository.getById(id);
+        movieRepository.delete(movie);
+        warehouseService.deleteArchive(movie.getRouteCover());
+
+        return "redirect:/admin";
+    }
 }
