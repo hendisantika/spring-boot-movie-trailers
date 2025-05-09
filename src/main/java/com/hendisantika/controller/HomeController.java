@@ -36,7 +36,7 @@ public class HomeController {
         List<Movie> latestMovies =
                 movieRepository.findAll(PageRequest.of(0, 4, Sort.by("premiereDate").descending())).toList();
         return new ModelAndView("index")
-                .addObject("latest Movies", latestMovies);
+                .addObject("latestMovies", latestMovies);
     }
 
     @GetMapping("movies")
