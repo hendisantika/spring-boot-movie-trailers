@@ -13,7 +13,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(
         properties = {
                 "management.endpoint.health.show-details=always",
-                "spring.datasource.url=jdbc:tc:mysql:9.2.0:///cinemaDB"
+                "spring.datasource.url=jdbc:tc:postgresql:17.5-alpine3.21:///cinemaDB"
         },
         webEnvironment = RANDOM_PORT
 )
