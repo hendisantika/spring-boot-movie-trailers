@@ -1,4 +1,4 @@
-package com.hendisantika.exception;
+package id.my.hendisantika.movietrailer.exception;
 
 /**
  * Created by IntelliJ IDEA.

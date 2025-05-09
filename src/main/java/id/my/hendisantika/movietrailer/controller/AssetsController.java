@@ -1,6 +1,6 @@
-package com.hendisantika.controller;
+package id.my.hendisantika.movietrailer.controller;
 
-import com.hendisantika.service.WarehouseService;
+import id.my.hendisantika.movietrailer.service.WarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;

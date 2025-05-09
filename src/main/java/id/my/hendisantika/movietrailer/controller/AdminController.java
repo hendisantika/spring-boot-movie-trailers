@@ -1,10 +1,10 @@
-package com.hendisantika.controller;
+package id.my.hendisantika.movietrailer.controller;
 
-import com.hendisantika.model.Genre;
-import com.hendisantika.model.Movie;
-import com.hendisantika.repository.GenreRepository;
-import com.hendisantika.repository.MovieRepository;
-import com.hendisantika.service.WarehouseService;
+import id.my.hendisantika.movietrailer.model.Genre;
+import id.my.hendisantika.movietrailer.model.Movie;
+import id.my.hendisantika.movietrailer.repository.GenreRepository;
+import id.my.hendisantika.movietrailer.repository.MovieRepository;
+import id.my.hendisantika.movietrailer.service.WarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

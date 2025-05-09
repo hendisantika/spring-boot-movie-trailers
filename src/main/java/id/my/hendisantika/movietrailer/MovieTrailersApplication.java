@@ -1,7 +1,7 @@
-package com.hendisantika;
+package id.my.hendisantika.movietrailer;
 
-import com.hendisantika.model.Genre;
-import com.hendisantika.repository.GenreRepository;
+import id.my.hendisantika.movietrailer.model.Genre;
+import id.my.hendisantika.movietrailer.repository.GenreRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,10 +11,10 @@ import org.thymeleaf.dialect.springdata.SpringDataDialect;
 import java.util.Arrays;
 
 @SpringBootApplication
-public class SpringBootMovieTrailersApplication {
+public class MovieTrailersApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootMovieTrailersApplication.class, args);
+        SpringApplication.run(MovieTrailersApplication.class, args);
     }
 
     @Bean

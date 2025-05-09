@@ -1,6 +1,6 @@
-package com.hendisantika.repository;
+package id.my.hendisantika.movietrailer.repository;
 
-import com.hendisantika.model.Movie;
+import id.my.hendisantika.movietrailer.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

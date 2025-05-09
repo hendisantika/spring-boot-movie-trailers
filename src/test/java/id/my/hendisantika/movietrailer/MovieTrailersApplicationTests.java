@@ -1,7 +1,7 @@
-package com.hendisantika;
+package id.my.hendisantika.movietrailer;
 
-import com.hendisantika.repository.GenreRepository;
-import com.hendisantika.repository.MovieRepository;
+import id.my.hendisantika.movietrailer.repository.GenreRepository;
+import id.my.hendisantika.movietrailer.repository.MovieRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
         },
         webEnvironment = RANDOM_PORT
 )
-public class SpringBootMovieTrailersApplicationTests {
+public class MovieTrailersApplicationTests {
 
     @Autowired
     private MovieRepository movieRepository;

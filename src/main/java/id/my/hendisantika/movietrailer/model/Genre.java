@@ -1,4 +1,4 @@
-package com.hendisantika.model;
+package id.my.hendisantika.movietrailer.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

@@ -1,7 +1,7 @@
-package com.hendisantika.service;
+package id.my.hendisantika.movietrailer.service;
 
-import com.hendisantika.exception.FileNotFoundException;
-import com.hendisantika.exception.WarehouseException;
+import id.my.hendisantika.movietrailer.exception.FileNotFoundException;
+import id.my.hendisantika.movietrailer.exception.WarehouseException;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

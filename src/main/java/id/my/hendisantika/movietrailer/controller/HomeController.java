@@ -1,7 +1,7 @@
-package com.hendisantika.controller;
+package id.my.hendisantika.movietrailer.controller;
 
-import com.hendisantika.model.Movie;
-import com.hendisantika.repository.MovieRepository;
+import id.my.hendisantika.movietrailer.model.Movie;
+import id.my.hendisantika.movietrailer.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
