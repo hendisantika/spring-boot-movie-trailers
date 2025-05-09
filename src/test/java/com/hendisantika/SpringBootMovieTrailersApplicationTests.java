@@ -3,10 +3,12 @@ package com.hendisantika;
 import com.hendisantika.repository.GenreRepository;
 import com.hendisantika.repository.MovieRepository;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @Testcontainers
@@ -17,7 +19,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
         },
         webEnvironment = RANDOM_PORT
 )
-class SpringBootMovieTrailersApplicationTests {
+public class SpringBootMovieTrailersApplicationTests {
 
     @Autowired
     private MovieRepository movieRepository;
@@ -31,4 +33,10 @@ class SpringBootMovieTrailersApplicationTests {
         movieRepository.deleteAll();
     }
 
+    @Test
+    void contextLoads() {
+        // Verify that the application context loads successfully
+        assertNotNull(movieRepository, "MovieRepository should be autowired");
+        assertNotNull(genreRepository, "GenreRepository should be autowired");
+    }
 }
