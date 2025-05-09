@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:9.2.0
+    container_name: mysql-trailers
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 53cret
+      MYSQL_DATABASE: trailers
+      MYSQL_USER: yu71
+      MYSQL_PASSWORD: 53cret
+    ports:
+      - "3308:3306"
+    expose:
+      - "3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "mysql", "--silent" ]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+    networks:
+      - trailers-network
+
+volumes:
+  mysql_data:
+
+networks:
+  trailers-network:
+    driver: bridge

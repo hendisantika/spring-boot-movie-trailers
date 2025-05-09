@@ -18,6 +18,7 @@ logs
 *.iws
 *.iml
 *.ipr
+mysql_data
 
 ### NetBeans ###
 /nbproject/private/
