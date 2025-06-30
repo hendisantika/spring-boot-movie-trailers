@@ -15,7 +15,7 @@
     <description>spring-boot-movie-trailers</description>
     <properties>
         <java.version>21</java.version>
-        <testcontainers.version>1.21.2</testcontainers.version>
+        <testcontainers.version>1.21.3</testcontainers.version>
         <start-class>id.my.hendisantika.movietrailer.MovieTrailersApplication</start-class>
     </properties>
     <dependencies>
