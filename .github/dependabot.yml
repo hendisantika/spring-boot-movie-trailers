@@ -7,3 +7,70 @@ updates:
       time: '21:00'
       timezone: Asia/Jakarta
     open-pull-requests-limit: 10
+    commit-message:
+      prefix: "build(deps)"
+      prefix-development: "build(deps-dev)"
+    labels:
+      - dependencies
+      - java
+    groups:
+      spring-boot:
+        patterns:
+          - "org.springframework.boot*"
+      testing:
+        patterns:
+          - "org.testcontainers*"
+          - "org.mockito*"
+          - "com.h2database*"
+          - "io.projectreactor*"
+      maven-plugins:
+        patterns:
+          - "org.apache.maven.plugins*"
+          - "com.google.cloud.tools*"
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: '21:00'
+      timezone: Asia/Jakarta
+    commit-message:
+      prefix: "ci"
+    labels:
+      - dependencies
+      - github-actions
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: '21:00'
+      timezone: Asia/Jakarta
+    commit-message:
+      prefix: "build(docker)"
+    labels:
+      - dependencies
+      - docker
+
+  - package-ecosystem: docker-compose
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: '21:00'
+      timezone: Asia/Jakarta
+    commit-message:
+      prefix: "build(docker)"
+    labels:
+      - dependencies
+      - docker
