@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jdk-alpine as build
+FROM eclipse-temurin:25-jdk-alpine AS build
 WORKDIR /workspace/app
 
 COPY mvnw .
@@ -11,11 +11,11 @@ RUN chmod +x ./mvnw
 RUN ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:25-jre-alpine
 VOLUME /tmp
 ARG DEPENDENCY=/workspace/app/target/dependency
 COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 COPY --from=build /workspace/app/assets /app/assets
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.hendisantika.movietrailer.MovieTrailerApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","id.my.hendisantika.movietrailer.MovieTrailersApplication"]

@@ -14,7 +14,7 @@
     <name>spring-boot-movie-trailers</name>
     <description>spring-boot-movie-trailers</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>25</java.version>
         <testcontainers.version>2.0.5</testcontainers.version>
         <start-class>id.my.hendisantika.movietrailer.MovieTrailersApplication</start-class>
     </properties>
@@ -166,7 +166,7 @@
                 <version>3.5.2</version>
                 <configuration>
                     <from>
-                        <image>amazoncorretto:21</image>
+                        <image>eclipse-temurin:25-jre</image>
                     </from>
                     <to>
                         <image>registry.cloudraya.com/ir-cr-hendi-144/movie-trailer</image>
